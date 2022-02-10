@@ -1,0 +1,77 @@
+---
+name: Both
+
+on:
+  workflow_dispatch: # manual trigger
+  push:
+    branches:
+      - master
+    paths:
+      - config1/**
+      - config2/**
+  pull_request:
+    branches:
+      - master
+    paths:
+      - config1/**
+      - config2/**
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+jobs:
+  config1:
+    name: Config1
+    runs-on: ubuntu-20.04
+    env:
+      WORKDIR: config1/
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Terraform fmt check
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          path: ${{ env.WORKDIR }}
+      - name: Terraform validate
+        uses: dflook/terraform-validate@v1
+        with:
+          path: ${{ env.WORKDIR }}
+      - name: Terraform plan
+        if: github.event_name == 'pull_request'
+        uses: dflook/terraform-plan@v1
+        with:
+          path: ${{ env.WORKDIR }}
+      - name: Terraform apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: dflook/terraform-apply@v1
+        with:
+          path: ${{ env.WORKDIR }}
+  config2:
+    name: Config2
+    runs-on: ubuntu-20.04
+    needs:
+      - config1
+    env:
+      WORKDIR: config2/
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Terraform fmt check
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          path: ${{ env.WORKDIR }}
+      - name: Terraform validate
+        uses: dflook/terraform-validate@v1
+        with:
+          path: ${{ env.WORKDIR }}
+      - name: Terraform plan
+        if: github.event_name == 'pull_request'
+        uses: dflook/terraform-plan@v1
+        with:
+          path: ${{ env.WORKDIR }}
+      - name: Terraform apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: dflook/terraform-apply@v1
+        with:
+          path: ${{ env.WORKDIR }}
