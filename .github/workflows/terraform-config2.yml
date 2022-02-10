@@ -17,7 +17,7 @@ on:
 env:
   WORKDIR: config2/
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GOOGLE_CREDENTIALS: /tmp/.serviceaccount.json
+  GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
 jobs:
   terraform:
@@ -26,10 +26,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Prepare Google credentials
-        run: echo "$CREDS" > $GOOGLE_CREDENTIALS
-        env:
-          CREDS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Terraform fmt check
         uses: dflook/terraform-fmt-check@v1
         with:
