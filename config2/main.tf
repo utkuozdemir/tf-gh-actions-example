@@ -11,18 +11,18 @@ provider "google" {
   zone    = "europe-west3-c"
 }
 
-resource "google_compute_firewall" "default" {
-  name    = "tf-gh-actions-example-config2-firewall"
-  network = "default"
-
-  allow {
-    protocol = "icmp"
-  }
-
-  allow {
-    protocol = "tcp"
-    ports    = ["5678"]
-  }
-
-  source_tags = ["tf-gh-actions-example-config2"]
-}
+#resource "google_compute_firewall" "default" {
+#  name    = "tf-gh-actions-example-config2-firewall"
+#  network = "default"
+#
+#  allow {
+#    protocol = "icmp"
+#  }
+#
+#  allow {
+#    protocol = "tcp"
+#    ports    = ["5678"]
+#  }
+#
+#  source_tags = ["tf-gh-actions-example-config2"]
+#}
