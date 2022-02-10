@@ -30,6 +30,8 @@ jobs:
         run: echo "$CREDS" > $GOOGLE_CREDENTIALS
         env:
           CREDS: ${{ secrets.GOOGLE_CREDENTIALS }}
+      - name: Check Google credentials
+        run: cat $GOOGLE_CREDENTIALS
       - name: Terraform fmt check
         uses: dflook/terraform-fmt-check@v1
         with:
