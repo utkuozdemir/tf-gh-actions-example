@@ -11,6 +11,7 @@ provider "google" {
   zone    = "europe-west3-c"
 }
 
+
 #resource "google_compute_firewall" "default" {
 #  name    = "tf-gh-actions-example-config1-firewall"
 #  network = "default"
