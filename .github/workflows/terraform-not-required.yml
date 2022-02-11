@@ -1,0 +1,24 @@
+---
+name: Terraform
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - config1/**
+      - config2/**
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - config1/**
+      - config2/**
+
+jobs:
+  do-nothing:
+    name: Do nothing
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Print info
+        run: No Terraform actions required
