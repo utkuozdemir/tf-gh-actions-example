@@ -1,5 +1,5 @@
 ---
-name: Both
+name: Terraform
 
 on:
   workflow_dispatch: # manual trigger
