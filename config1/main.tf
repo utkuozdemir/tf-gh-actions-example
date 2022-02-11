@@ -12,18 +12,18 @@ provider "google" {
 }
 
 
-resource "google_compute_firewall" "default" {
-  name    = "tf-gh-actions-example-config1-firewall"
-  network = "default"
-
-  allow {
-    protocol = "icmp"
-  }
-
-  allow {
-    protocol = "tcp"
-    ports    = ["1234"]
-  }
-
-  source_tags = ["tf-gh-actions-example-config1"]
-}
+#resource "google_compute_firewall" "default" {
+#  name    = "tf-gh-actions-example-config1-firewall"
+#  network = "default"
+#
+#  allow {
+#    protocol = "icmp"
+#  }
+#
+#  allow {
+#    protocol = "tcp"
+#    ports    = ["1234"]
+#  }
+#
+#  source_tags = ["tf-gh-actions-example-config1"]
+#}
