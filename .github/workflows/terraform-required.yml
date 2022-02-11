@@ -1,5 +1,5 @@
 ---
-name: Terraform
+name: terraform
 
 on:
   workflow_dispatch: # manual trigger
@@ -22,7 +22,6 @@ env:
 
 jobs:
   config1:
-    name: Config1
     runs-on: ubuntu-20.04
     env:
       WORKDIR: config1/
@@ -48,7 +47,6 @@ jobs:
         with:
           path: ${{ env.WORKDIR }}
   config2:
-    name: Config2
     runs-on: ubuntu-20.04
     needs:
       - config1

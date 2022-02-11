@@ -1,5 +1,5 @@
 ---
-name: Terraform
+name: terraform
 
 on:
   push:
@@ -16,8 +16,12 @@ on:
       - config2/**
 
 jobs:
-  do-nothing:
-    name: Do nothing
+  config1:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Print info
+        run: echo "No Terraform actions required"
+  config2:
     runs-on: ubuntu-20.04
     steps:
       - name: Print info
